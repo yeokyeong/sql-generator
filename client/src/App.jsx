@@ -4,10 +4,26 @@ import SQLlogo from "./assets/sql.png";
 
 function App() {
   const [queryDesc, setQueryDesc] = useState("");
+  const [sqlQuery, setSqlQuery] = useState("");
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    console.log(queryDesc, 111, "");
+
+    const generatedQuery = await generateQuery();
+    setSqlQuery(generatedQuery);
+  };
+
+  const generateQuery = async () => {
+    const res = await fetch("http://localhost:3000/generate", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({ queryDesc }),
+    });
+
+    const data = await res.json();
+    return data.response;
   };
 
   return (
@@ -22,6 +38,7 @@ function App() {
           onChange={(e) => setQueryDesc(e.target.value)}
         />
         <input type="submit" value="Generate query" />
+        <pre>{sqlQuery}</pre>
       </form>
     </main>
   );

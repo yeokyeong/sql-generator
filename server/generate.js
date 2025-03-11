@@ -11,7 +11,7 @@ const generate = async (queryDesc) => {
       },
       {
         role: "user",
-        content: `Convert the following natural language description into a SQL query:\n\n ${queryDesc}`,
+        content: `Convert the following natural language description into a SQL query:\n\n ${queryDesc} and only reply about SQL sentence.`,
       },
     ],
   });

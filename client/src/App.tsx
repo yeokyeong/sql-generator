@@ -1,12 +1,13 @@
 import { useState } from "react";
 import styles from "./index.module.css";
 import SQLlogo from "./assets/sql.png";
+import Dashboard from "./dashboard/Dashboard";
 
 function App() {
   const [queryDesc, setQueryDesc] = useState("");
   const [sqlQuery, setSqlQuery] = useState("");
 
-  const onSubmit = async (e) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const generatedQuery = await generateQuery();
@@ -40,6 +41,7 @@ function App() {
         <input type="submit" value="Generate query" />
         <pre>{sqlQuery}</pre>
       </form>
+      <Dashboard />
     </main>
   );
 }

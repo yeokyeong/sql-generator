@@ -1,35 +1,29 @@
 {
-    "compilerOptions": {
-        "target": "ESNext",
-        "useDefineForClassFields": true,
-        "lib": [
-            "DOM",
-            "DOM.Iterable",
-            "ESNext"
-        ],
-        // Allow JS files to be imported from TS and vice versa
-        "allowJs": true,
-        "skipLibCheck": true,
-        // Use correct ESM import behavior
-        "esModuleInterop": true,
-        "allowSyntheticDefaultImports": true,
-        "strict": true,
-        "forceConsistentCasingInFileNames": true,
-        "module": "ESNext",
-        "moduleResolution": "Node",
-        // Allow JSON modules to be imported
-        "resolveJsonModule": true,
-        // Disallow features that require cross-file awareness
-        "isolatedModules": true,
-        "noEmit": true,
-        "jsx": "react-jsx",
-    },
-    "include": [
-        "src"
-    ],
-    "references": [
-        {
-            "path": "./tsconfig.node.json"
-        }
-    ]
+  "compilerOptions": {
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    // Allow JS files to be imported from TS and vice versa
+    "allowJs": true,
+    "skipLibCheck": true,
+    // Use correct ESM import behavior
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    // Allow JSON modules to be imported
+    "resolveJsonModule": true,
+    // Disallow features that require cross-file awareness
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx"
+  },
+  "include": ["src"],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ]
 }

@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import generate from "./generate.js";
+import db from "./connect.js";
 
 const app = express();
 
@@ -9,8 +10,15 @@ app.use(cors());
 
 const port = process.env.PORT || 3000;
 
-app.get("/", (req, res) => {
-  res.send("from my API");
+db.connect();
+
+app.get("/business-open-close-stats", (req, res) => {
+  let data;
+  db.query("SELECT * FROM business_open_close_stats", function (err, rows) {
+    data = rows;
+    console.log(rows);
+    res.json({ response: data });
+  });
 });
 
 app.post("/generate", async (req, res) => {

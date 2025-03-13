@@ -1,47 +1,27 @@
-import { useState } from "react";
 import styles from "./index.module.css";
-import SQLlogo from "./assets/sql.png";
-import Dashboard from "./dashboard/Dashboard";
+import Dashboard from "./pages/Dashboard";
+import { BrowserRouter, Routes, Route } from "react-router";
+import Generator from "./pages/Generator";
+import Home from "./pages/Home";
+import SideMenu from "./components/SideMenu";
+import Footer from "./components/Footer";
+import Header from "./dashboard/components/Header";
 
 function App() {
-  const [queryDesc, setQueryDesc] = useState("");
-  const [sqlQuery, setSqlQuery] = useState("");
-
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    const generatedQuery = await generateQuery();
-    setSqlQuery(generatedQuery);
-  };
-
-  const generateQuery = async () => {
-    const res = await fetch("http://localhost:3000/generate", {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify({ queryDesc }),
-    });
-
-    const data = await res.json();
-    return data.response;
-  };
-
   return (
     <main className={styles.main}>
-      <img src={SQLlogo} alt="" className={styles.icon}></img>
-      <h3>Generate SQL with AI</h3>
-      <form onSubmit={onSubmit}>
-        <input
-          type="text"
-          name="query-descriptio"
-          placeholder="Describe your query"
-          onChange={(e) => setQueryDesc(e.target.value)}
-        />
-        <input type="submit" value="Generate query" />
-        <pre>{sqlQuery}</pre>
-      </form>
-      <Dashboard />
+      <BrowserRouter>
+        <Header />
+        <div>
+          <SideMenu />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/generate" element={<Generator />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+          </Routes>
+        </div>
+        <Footer />
+      </BrowserRouter>
     </main>
   );
 }

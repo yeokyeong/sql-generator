@@ -1,8 +1,8 @@
 import express from "express";
 import cors from "cors";
-import "reflect-metadata"
+import "reflect-metadata";
 import generate from "./src/generate.js";
-import {AppDataSource} from "./src/data-source.ts";
+import { PrismaClient } from "@prisma/client";
 
 const app = express();
 
@@ -11,27 +11,37 @@ app.use(cors());
 
 const port = process.env.PORT || 3000;
 
-AppDataSource.initialize()
-    .then(() => {
-        console.log("Data Source has been initialized!")
-    })
-    .catch((err) => {
-        console.error("Error during Data Source initialization", err)
-    })
+const prisma = new PrismaClient();
 
+(BigInt.prototype as any).toJSON = function() {
+  return this.toString()
+} 
 
+// /business-open-close-stats?businessName=강남역
+// /business-open-close-stats?year=2024
+// /business-open-close-stats?sort=date&order=desc
+// /business-open-close-stats?page=1&limit=50
 app.get("/business-open-close-stats", async (req, res) => {
-  let rowData = await AppDataSource.query(
-    "SELECT * FROM business_open_close_stats limit 20;"
-  );
+  console.log(req.query, 111, "req");
+  const { page, limit = 20, sort, order, year, businessName } = req.query;
 
-  res.json({ response: rowData });
-    
+  try {
+    const results = await prisma.business_open_close_stats.findMany({
+      skip: page ? (parseInt(page) - 1) * limit : 0,
+      take: parseInt(limit),
+    })
+
+    res.json({ response: results });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
 });
 
 app.post("/generate", async (req, res) => {
   const queryDescription = req.body.queryDesc;
   try {
+    console.log("logging api 2 ", 1111);
     const sqlQuery = await generate(queryDescription);
     res.json({ response: sqlQuery });
   } catch (error) {

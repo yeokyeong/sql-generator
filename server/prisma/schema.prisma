@@ -1,0 +1,27 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model business_open_close_stats {
+  id                    BigInt  @id @unique(map: "id") @default(autoincrement()) @db.UnsignedBigInt
+  trdar_cd              String? @db.VarChar(20)
+  trdar_cd_nm           String? @db.VarChar(100)
+  trdar_se_cd           String? @db.VarChar(20)
+  trdar_se_cd_nm        String? @db.VarChar(100)
+  svc_induty_cd         String? @db.VarChar(20)
+  svc_induty_cd_nm      String? @db.VarChar(100)
+  stor_co               Int?
+  opbiz_stor_co         Int?
+  clsbiz_stor_co        Int?
+  frc_stor_co           Int?
+  similr_induty_stor_co Int?
+  opbiz_rt              Float?  @db.Float
+  clsbiz_rt             Float?  @db.Float
+  stdr_yyqu_cd          String? @db.VarChar(10)
+}

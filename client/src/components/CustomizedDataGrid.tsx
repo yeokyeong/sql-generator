@@ -6,35 +6,49 @@ import { GridCellParams, GridRowsProp, GridColDef } from "@mui/x-data-grid";
 import { ClientBusinessStats, ApiBusinessOpenCloseStats } from "../@types";
 
 type DataProps = {
-  data: any;
+  fetchedData: any;
+  limit: number;
+  offset: number;
+  onChangePagination: (limit: number, offset: number) => void;
 };
 
 export default function CustomizedDataGrid({
-  data,
+  fetchedData,
+  limit,
+  offset,
+  onChangePagination,
 }: DataProps): React.ReactElement {
   const [rows, setRows] = useState<GridRowsProp>([]);
 
   useEffect(() => {
-    if (data) {
-      const mappedData: GridRowsProp = data.map(
+    if (fetchedData) {
+      const mappedData: GridRowsProp = fetchedData.data?.map(
         (item: ApiBusinessOpenCloseStats) => {
           return mapBusinessStats(item);
         }
       );
       setRows(mappedData);
     }
-  }, [data]);
+  }, [fetchedData]);
 
   return (
     <DataGrid
       checkboxSelection
       rows={rows}
       columns={columns}
+      rowCount={fetchedData.pagination?.total}
+      paginationMode="server"
       getRowClassName={(params) =>
         params.indexRelativeToCurrentPage % 2 === 0 ? "even" : "odd"
       }
       initialState={{
-        pagination: { paginationModel: { pageSize: 20 } },
+        pagination: { paginationModel: { pageSize: limit, page: offset } },
+      }}
+      onPaginationModelChange={(params) => {
+        onChangePagination(
+          params.pageSize ? params.pageSize : limit,
+          params.page ? params.page : offset
+        );
       }}
       pageSizeOptions={[10, 20, 50]}
       disableColumnResize

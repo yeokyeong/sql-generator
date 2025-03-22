@@ -17,20 +17,45 @@ const prisma = new PrismaClient();
   return this.toString()
 } 
 
-// /business-open-close-stats?businessName=강남역
-// /business-open-close-stats?year=2024
-// /business-open-close-stats?sort=date&order=desc
-// /business-open-close-stats?page=1&limit=50
+
+/*
+  /business-open-close-stats?businessName=이태원
+  /business-open-close-stats?year=2024
+  /business-open-close-stats?sort=stor_co&order=desc
+  /business-open-close-stats?page=1&limit=50
+*/
 app.get("/business-open-close-stats", async (req, res) => {
   console.log(req.query, 111, "req");
   const { page, limit = 20, sort, order, year, businessName } = req.query;
-
+  let where = {};
+  let orderBy = {};
   try {
+    if(year){
+      where = {
+        stdr_yyqu_cd: {
+          startsWith: year ? year.toString() : "",
+        }
+      }
+    }
+    if(businessName){
+      where = {
+        ...where,
+        trdar_cd_nm: {
+          contains: businessName ? businessName.toString() : "",
+        }
+    }
+  }
+    if(sort && order){
+      orderBy = {
+        [sort]: order
+    }
+  }
     const results = await prisma.business_open_close_stats.findMany({
       skip: page ? (parseInt(page) - 1) * limit : 0,
       take: parseInt(limit),
+      where,
+      orderBy,
     })
-
     res.json({ response: results });
   } catch (error) {
     console.error(error);

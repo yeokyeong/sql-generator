@@ -8,8 +8,8 @@ import { alpha } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 
-import AppNavbar from "../dashboard/components/AppNavbar";
-import Header from "../dashboard/components/Header";
+import AppNavbar from "./AppNavbar";
+import Header from "./Header";
 import {
   chartsCustomizations,
   dataGridCustomizations,
@@ -32,7 +32,7 @@ const Layout = ({ children }: LayoutDefaultProps) => {
   return (
     <Box sx={{ display: "flex" }}>
       <SideMenu />
-      <AppNavbar />
+      {/* <AppNavbar /> */}
       {/* Main content */}
       <Box
         component="main"
@@ -56,9 +56,9 @@ const Layout = ({ children }: LayoutDefaultProps) => {
           <Header />
           {/* <MainGrid /> */}
           {children}
+          <Footer />
         </Stack>
       </Box>
-      <Footer />
     </Box>
   );
 };

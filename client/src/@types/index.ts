@@ -39,3 +39,8 @@ export interface LayoutDefaultProps {
     closeRate: number;
     quarterCode: string;
   }
+
+  //page name per route path
+  export interface PageName {
+    [key: string]: string;      
+  }

@@ -17,7 +17,7 @@ import {
   treeViewCustomizations,
 } from "../dashboard/theme/customizations";
 
-import SideMenu from "../components/SideMenu";
+import SideMenu from "./SideMenu";
 import Footer from "../components/Footer";
 
 const xThemeComponents = {

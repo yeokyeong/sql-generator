@@ -7,7 +7,7 @@ import Divider from "@mui/material/Divider";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import SelectContent from "../dashboard/components/SelectContent";
-import MenuContent from "../dashboard/components/MenuContent";
+import MenuContent from "./MenuContent";
 import CardAlert from "../dashboard/components/CardAlert";
 import OptionsMenu from "../dashboard/components/OptionsMenu";
 

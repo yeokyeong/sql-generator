@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BrowserRouter, Routes, Route } from "react-router";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import type {} from "@mui/x-date-pickers/themeAugmentation";
 import type {} from "@mui/x-charts/themeAugmentation";
 import type {} from "@mui/x-data-grid-pro/themeAugmentation";
@@ -19,7 +19,6 @@ import Generator from "./pages/Generator";
 import Home from "./pages/Home";
 
 import Layout from "./components/Layout";
-
 const xThemeComponents = {
   ...chartsCustomizations,
   ...dataGridCustomizations,
@@ -31,15 +30,16 @@ function App(props: { disableCustomTheme?: boolean }) {
   return (
     <AppTheme {...props} themeComponents={xThemeComponents}>
       <CssBaseline enableColorScheme />
-      <Layout>
-        <BrowserRouter>
+      <BrowserRouter>
+        <Layout>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/generate" element={<Generator />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/analytics" element={<Generator />} />
+            <Route path="/reports" element={<Generator />} />
           </Routes>
-        </BrowserRouter>
-      </Layout>
+        </Layout>
+      </BrowserRouter>
     </AppTheme>
   );
 }

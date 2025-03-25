@@ -3,7 +3,7 @@ import { styled } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 import Breadcrumbs, { breadcrumbsClasses } from "@mui/material/Breadcrumbs";
 import NavigateNextRoundedIcon from "@mui/icons-material/NavigateNextRounded";
-import { ROUTE_PAGE_NAME } from "../utils/const";
+import { PAGE_NAME } from "../utils/const";
 
 const StyledBreadcrumbs = styled(Breadcrumbs)(({ theme }) => ({
   margin: theme.spacing(1, 0),
@@ -19,7 +19,7 @@ const StyledBreadcrumbs = styled(Breadcrumbs)(({ theme }) => ({
 export default function NavbarBreadcrumbs() {
   const pathName = window.location.pathname;
 
-  const pageName = ROUTE_PAGE_NAME[pathName] || pathName.split("/").pop() || "";
+  const pageName = PAGE_NAME[pathName] || pathName.split("/").pop() || "";
   return (
     <StyledBreadcrumbs
       aria-label="breadcrumb"

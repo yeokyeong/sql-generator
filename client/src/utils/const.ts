@@ -7,8 +7,7 @@ export const PAGE_NAME: PageName = {
   REPORTS: "Reports",
 };
 export const PAGE_PATH: PageName = {
-  DEFAULT: "/",
-  HOME: "/home",
+  HOME: "/",
   DASHBOARD: "/dashboard",
   ANALYTICS: "/analytics",
   REPORTS: "/reports",

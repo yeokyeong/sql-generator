@@ -7,10 +7,14 @@ import Copyright from "../dashboard/internals/components/Copyright";
 import ChartUserByCountry from "../dashboard/components/ChartUserByCountry";
 import CustomizedTreeView from "../dashboard/components/CustomizedTreeView";
 import CustomizedDataGrid from "../dashboard/components/CustomizedDataGrid";
-import HighlightedCard from "../dashboard/components/HighlightedCard";
+import HighlightedCard from ".//HighlightedCard";
 import PageViewsBarChart from "../dashboard/components/PageViewsBarChart";
 import SessionsChart from "../dashboard/components/SessionsChart";
+import InsightsRoundedIcon from "@mui/icons-material/InsightsRounded";
+import StorageRoundedIcon from "@mui/icons-material/StorageRounded";
+import EditNoteRoundedIcon from "@mui/icons-material/EditNoteRounded";
 import StatCard, { StatCardProps } from "../dashboard/components/StatCard";
+import { PAGE_NAME, PAGE_PATH } from "../utils/const";
 
 const data: StatCardProps[] = [
   {
@@ -46,10 +50,56 @@ const data: StatCardProps[] = [
   },
 ];
 
+const menus = [
+  {
+    title: PAGE_NAME.DASHBOARD,
+    description: "Velit labore enim elit aliqua labore aliqua sint ad officia.",
+    btnTitle: "Go to dashboard",
+    icon: <StorageRoundedIcon />,
+    path: PAGE_PATH.DASHBOARD,
+  },
+  {
+    title: PAGE_NAME.ANALYTICS,
+    description: "Velit labore enim elit aliqua labore aliqua sint ad officia.",
+    btnTitle: "Go to ANALYTICS",
+    icon: <InsightsRoundedIcon />,
+    path: PAGE_PATH.ANALYTICS,
+  },
+  {
+    title: PAGE_NAME.REPORTS,
+    description: "Velit labore enim elit aliqua labore aliqua sint ad officia.",
+    btnTitle: "Go to REPORTS",
+    icon: <EditNoteRoundedIcon />,
+    path: PAGE_PATH.REPORTS,
+  },
+];
 export default function MainGrid() {
   return (
     <Box sx={{ width: "100%", maxWidth: { sm: "100%", md: "1700px" } }}>
       {/* cards */}
+      <Typography component="h2" variant="h6" sx={{ mb: 2 }}>
+        Quick Menu
+      </Typography>
+      <Grid
+        container
+        spacing={2}
+        columns={12}
+        sx={{ mb: (theme) => theme.spacing(2) }}
+      >
+        <Grid
+          container
+          spacing={2}
+          columns={12}
+          sx={{ mb: (theme) => theme.spacing(2) }}
+        >
+          {menus.map((menu, index) => (
+            <Grid size={{ xs: 12, sm: 6, lg: 3 }}>
+              <HighlightedCard {...menu} key={index} />
+            </Grid>
+          ))}
+        </Grid>
+      </Grid>
+      {/* TODO : Add overview ex) how many store were closed. */}
       <Typography component="h2" variant="h6" sx={{ mb: 2 }}>
         Overview
       </Typography>

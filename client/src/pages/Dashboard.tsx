@@ -41,7 +41,7 @@ export default function Dashboard(props: { disableCustomTheme?: boolean }) {
       <Typography component="h2" variant="h6" sx={{ mb: 2 }}>
         Dashboard
       </Typography>
-      <Grid container spacing={2} columns={12}>
+      <Grid>
         <Grid size={{ xs: 12, lg: 9 }}>
           <CustomizedDataGrid
             fetchedData={fetchedData}

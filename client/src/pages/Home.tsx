@@ -1,12 +1,16 @@
 import * as React from "react";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 import MainGrid from "../components/MainGrid";
 
 function Home() {
   return (
-    <div>
-      <h2>Home~~</h2>
+    <Box sx={{ width: "100%", maxWidth: { sm: "100%", md: "1700px" } }}>
+      <Typography component="h2" variant="h6" sx={{ mb: 2 }}>
+        Home
+      </Typography>
       <MainGrid />
-    </div>
+    </Box>
   );
 }
 

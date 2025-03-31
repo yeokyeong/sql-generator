@@ -52,7 +52,6 @@ export default function Dashboard(props: { disableCustomTheme?: boolean }) {
   }
 
   function handleKeywordType(keywordType: string) {
-    console.log(keywordType, 111, "keywordType");
     setKeywordType(keywordType);
     let queryString = {
       limit,

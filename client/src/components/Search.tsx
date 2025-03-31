@@ -6,6 +6,10 @@ import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
+import {
+  OPEN_CLOSE_STATS_CLOUMN,
+  OPEN_CLOSE_STATS_CLOUMN_NAME,
+} from "../utils/const";
 
 export default function Search(props: any) {
   const { handleKeyword, handleKeywordType, keywordType } = props;
@@ -23,10 +27,26 @@ export default function Search(props: any) {
         <MenuItem value="">
           <em>None</em>
         </MenuItem>
-        <MenuItem value={10}>Ten</MenuItem>
-        <MenuItem value={20}>Twenty</MenuItem>
-        <MenuItem value={30}>Thirty</MenuItem>
+        <MenuItem value={OPEN_CLOSE_STATS_CLOUMN.AREA_CODE}>
+          {OPEN_CLOSE_STATS_CLOUMN_NAME.AREA_CODE}
+        </MenuItem>
+        <MenuItem value={OPEN_CLOSE_STATS_CLOUMN.AREA_CODE_NAME}>
+          {OPEN_CLOSE_STATS_CLOUMN_NAME.AREA_CODE_NAME}
+        </MenuItem>
+        <MenuItem value={OPEN_CLOSE_STATS_CLOUMN.AREA_TYPE_CODE}>
+          {OPEN_CLOSE_STATS_CLOUMN_NAME.AREA_TYPE_CODE}
+        </MenuItem>
+        <MenuItem value={OPEN_CLOSE_STATS_CLOUMN.AREA_TYPE_CODE_NAME}>
+          {OPEN_CLOSE_STATS_CLOUMN_NAME.AREA_TYPE_CODE_NAME}
+        </MenuItem>
+        <MenuItem value={OPEN_CLOSE_STATS_CLOUMN.SERVICE_TYPE_CODE}>
+          {OPEN_CLOSE_STATS_CLOUMN_NAME.SERVICE_TYPE_CODE}
+        </MenuItem>
+        <MenuItem value={OPEN_CLOSE_STATS_CLOUMN.SERVICE_TYPE_CODE_NAME}>
+          {OPEN_CLOSE_STATS_CLOUMN_NAME.SERVICE_TYPE_CODE_NAME}
+        </MenuItem>
       </Select>
+
       <FormControl
         sx={{ width: { xs: "100%", md: "25ch" } }}
         variant="outlined"

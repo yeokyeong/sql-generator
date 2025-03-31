@@ -41,6 +41,12 @@ const secondaryListItems = [
 ];
 
 export default function MenuContent() {
+  const [selectedIndex, setSelectedIndex] = React.useState(0);
+
+  function handleClick(index: number) {
+    setSelectedIndex(index);
+  }
+
   return (
     <Stack sx={{ flexGrow: 1, p: 1, justifyContent: "space-between" }}>
       <List dense>
@@ -50,7 +56,10 @@ export default function MenuContent() {
               to={item.path}
               style={{ color: "inherit", textDecoration: "inherit" }}
             >
-              <ListItemButton selected={index === 0}>
+              <ListItemButton
+                selected={index === selectedIndex}
+                onClick={() => handleClick(index)}
+              >
                 <ListItemIcon>{item.icon}</ListItemIcon>
                 <ListItemText primary={item.text} />
               </ListItemButton>

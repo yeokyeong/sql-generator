@@ -54,7 +54,7 @@ const menus = [
   {
     title: PAGE_NAME.DASHBOARD,
     description: "Velit labore enim elit aliqua labore aliqua sint ad officia.",
-    btnTitle: "Go to dashboard",
+    btnTitle: "Go to DASHBOARD",
     icon: <StorageRoundedIcon />,
     path: PAGE_PATH.DASHBOARD,
   },
